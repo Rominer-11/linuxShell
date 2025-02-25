@@ -3,7 +3,6 @@
 int main()
 {
 	char userCommand[64];
-	char userArgs[256];
 
 	char exitCommand[64] = "exit";
 
@@ -11,10 +10,21 @@ int main()
 	{
 		printf("$ ");
 
-		scanf("%s %s", userCommand, userArgs);
-		printf("Command recieved: %s\n", userCommand);
-		printf("Arguments recieved: %s\n", userArgs);	
+		scanf("%s", userCommand);
+		processCommand(userCommand);
 	}
 
+	/* What we want to make:
+	 * LS command
+	 * CD command
+	 * PWD command
+	 */
+
+	return 0;
+}
+
+int processCommand(char userCommand[])
+{
+	printf("%s\n", userCommand);
 	return 0;
 }
