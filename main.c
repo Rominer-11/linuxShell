@@ -1,30 +1,45 @@
 #include <stdio.h>
+#define BUFFERSIZE 64
 
+/*
+ * Contains main command loop
+ * Checks for exit command
+ * Sends command to be processed
+ */
 int main()
 {
-	char userCommand[64];
+	char userCommand[BUFFERSIZE];
 
-	char exitCommand[64] = "exit";
+	char exitCommand[BUFFERSIZE] = "exit\n";
 
-	while (strcmp(userCommand, exitCommand) != 0)
+	while (isExitCommand(userCommand) != 1)
 	{
-		printf("$ ");
+		system(userCommand);
+		
+		printf("%s", getWindow());
+		printf("$H> ");
 
-		scanf("%s", userCommand);
-		processCommand(userCommand);
+		fgets(userCommand, BUFFERSIZE, stdin);
 	}
-
-	/* What we want to make:
-	 * LS command
-	 * CD command
-	 * PWD command
-	 */
 
 	return 0;
 }
 
-int processCommand(char userCommand[])
+/* Exactly what it sounds like */
+int isExitCommand(char userCommand[])
 {
-	printf("%s\n", userCommand);
-	return 0;
+	char exitCommand[BUFFERSIZE] = "exit\n";
+
+	int n = 0;
+	if (strcmp(userCommand, exitCommand) == 0)
+	{
+		n = 1;
+	}
+	return n;
+}
+
+char getWindow()
+{
+	char window[10][10];
+	return window;
 }
