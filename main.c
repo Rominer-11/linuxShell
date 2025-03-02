@@ -1,29 +1,7 @@
 #include <stdio.h>
 #define BUFFERSIZE 64
 
-/*
- * Contains main command loop
- * Checks for exit command
- * Sends command to be processed
- */
-int main()
-{
-	char userCommand[BUFFERSIZE];
-
-	char exitCommand[BUFFERSIZE] = "exit\n";
-
-	while (isExitCommand(userCommand) != 1)
-	{
-		system(userCommand);
-		
-		printf("%s", getWindow());
-		printf("$H> ");
-
-		fgets(userCommand, BUFFERSIZE, stdin);
-	}
-
-	return 0;
-}
+char window[10][20];
 
 /* Exactly what it sounds like */
 int isExitCommand(char userCommand[])
@@ -38,8 +16,39 @@ int isExitCommand(char userCommand[])
 	return n;
 }
 
-char getWindow()
+void displayWindow()
 {
-	char window[10][10];
-	return window;
+	int row;
+	for (row = 0; row < 10; ++row)
+	{
+		int col;
+		for (col = 0; col < 20; ++col)
+		{
+			printf("%d", window[row][col]);
+		}	
+		printf("\n");
+	}
 }
+
+/*
+ * Contains main command loop
+ * Checks for exit command
+ * Sends command to be processed
+ */
+int main()
+{
+	char userCommand[BUFFERSIZE];
+	char exitCommand[BUFFERSIZE] = "exit\n";
+
+	while (isExitCommand(userCommand) != 1)
+	{
+		system(userCommand);
+		displayWindow();	
+		printf("$H> ");
+
+		fgets(userCommand, BUFFERSIZE, stdin);
+	}
+
+	return 0;
+}
+
