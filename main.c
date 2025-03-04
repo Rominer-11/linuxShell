@@ -16,6 +16,22 @@ int isExitCommand(char userCommand[])
 	return n;
 }
 
+void setupWindow()
+{
+	int row;
+	for (row = 0; row < 10; ++row)
+	{
+		int col;
+		for (col = 0; col < 10; ++col)
+		{
+			if (row == 0 || row == 9)
+			{
+				window[row][col] = '-';
+			}
+		}
+	}
+}
+
 void displayWindow()
 {
 	int row;
@@ -39,11 +55,14 @@ int main()
 {
 	char userCommand[BUFFERSIZE];
 	char exitCommand[BUFFERSIZE] = "exit\n";
+	
+	setupWindow();
 
 	while (isExitCommand(userCommand) != 1)
 	{
+		system("clear");
+		displayWindow();
 		system(userCommand);
-		displayWindow();	
 		printf("$H> ");
 
 		fgets(userCommand, BUFFERSIZE, stdin);
