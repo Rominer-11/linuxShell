@@ -1,7 +1,9 @@
 #include <stdio.h>
 #define BUFFERSIZE 64
+#define WIN_BASE 20
+#define WIN_HEIGHT 10
 
-char window[10][20];
+char window[WIN_HEIGHT][WIN_BASE];
 
 /* Exactly what it sounds like */
 int isExitCommand(char userCommand[])
@@ -19,10 +21,10 @@ int isExitCommand(char userCommand[])
 void setupWindow()
 {
 	int row;
-	for (row = 0; row < 10; ++row)
+	for (row = 0; row < WIN_HEIGHT; ++row)
 	{
 		int col;
-		for (col = 0; col < 10; ++col)
+		for (col = 0; col < WIN_BASE; ++col)
 		{
 			if (row == 0 || row == 9)
 			{
@@ -30,6 +32,7 @@ void setupWindow()
 			}
 		}
 	}
+
 }
 
 void displayWindow()
@@ -40,7 +43,7 @@ void displayWindow()
 		int col;
 		for (col = 0; col < 20; ++col)
 		{
-			printf("%d", window[row][col]);
+			printf("%c", window[row][col]);
 		}	
 		printf("\n");
 	}
