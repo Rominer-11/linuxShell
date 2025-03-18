@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 #define BUFFERSIZE 64
 #define WIN_BASE 20
 #define WIN_HEIGHT 10
@@ -31,6 +32,7 @@ void setupWindow()
 				window[row][col] = '-';
 			}
 		}
+		window[1] = ['S', 'H', 'E', 'L', 'L']; 
 	}
 
 }
